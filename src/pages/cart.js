@@ -77,7 +77,7 @@ const cart = () => {
             </p>
             <button
               disabled={isRedirecting}
-              onClick={() => onCheckout}
+              onClick={onCheckout}
               className="border rounded py-2 px-6 bg-yellow-500 hover:bg-yellow-600 border-yellow-500 hover:borded-yellow-600 focus:ring-4 focus:ring-opacity-50 focus:ring-yellow-500 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-yellow-500 mt-4 max-w-max"
             >
               {isRedirecting ? "Redirecting..." : "Go to checkout"}

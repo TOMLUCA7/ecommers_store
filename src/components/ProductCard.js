@@ -2,8 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Reting from "./Reting";
+import { formatCurrencyString } from "use-shopping-cart/core";
+import { useShoppingCart } from "use-shopping-cart";
+import toast from "react-hot-toast";
 
 const ProductCard = ({ product, index }) => {
+  const { addItem } = useShoppingCart();
+
+  const onAddToCart = (e) => {
+    e.preventDefault();
+    const id = toast.loading("Adding 1 item ...");
+    addItem(product);
+    toast.success(`${product.name} added`, { id });
+  };
+
   return (
     <Link
       href={`/products/${product.id}`}
@@ -26,10 +38,16 @@ const ProductCard = ({ product, index }) => {
           <div className="">
             <p className="text-gra-500">Price</p>
             <p className="text-gra-500 tetx-lg font-semibold">
-              {product.price}
+              {formatCurrencyString({
+                currency: product.currency,
+                value: product.price,
+              })}
             </p>
           </div>
-          <button className="text-black border rounded-lg py-1 px-4 hover:bg-green-400 hover:text-white hover:shadow-lg hover:border-gray-200">
+          <button
+            onClick={onAddToCart}
+            className="text-black border rounded-lg py-1 px-4 hover:bg-green-400 hover:text-white hover:shadow-lg hover:border-gray-200"
+          >
             Add to Card
           </button>
         </div>

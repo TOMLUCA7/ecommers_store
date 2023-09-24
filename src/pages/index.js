@@ -1,8 +1,21 @@
+"use client";
+
+import React, { useRef } from "react";
 import { stripe } from "@/utils/stripe";
 import ProductCard from "@/components/ProductCard";
+import { motion, useInView } from "framer-motion";
 
 export default function Home({ products }) {
   // console.log(products);
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  const cardVariants = {
+    initial: { y: 50, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+  };
+
   return (
     <div className="container xl:max-w-screen-xl mx-auto py-12 px-6">
       <div className="grid gap-8 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1">

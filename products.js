@@ -55,4 +55,11 @@ module.exports = [
     image:
       "https://epic-projects.nyc3.digitaloceanspaces.com/react-ecommerce/machine-pen-pencil-set.jpeg",
   },
+  {
+    name: "PS5",
+    price: 7000,
+    currency: "USD",
+    image:
+      "https://media.direct.playstation.com/is/image/sierialto/PS5-front-with-dualsense",
+  },
 ];

@@ -30,7 +30,7 @@ const Header = () => {
       <div className="container mx-auto p-6 flex justify-between">
         <Logo />
         <Link
-          href={"/card"}
+          href="/cart"
           className="flex items-center space-x-1 text-gray-700 hover:text-gray-900"
         >
           <div className=" relative ">

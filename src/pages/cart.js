@@ -43,9 +43,9 @@ const cart = () => {
             <CartProduct key={key} product={product} />
           ))}
           <div className="flex flex-col items-end border-t py-4 mt-8">
-            <p className="text-xl ">
+            <p className="text-xl">
               Total :{" "}
-              <span className="font-simebold">{formattedTotalPrice}</span>
+              <span className="font-semibold">{formattedTotalPrice}</span>
             </p>
             <button
               onClick={() => {}}

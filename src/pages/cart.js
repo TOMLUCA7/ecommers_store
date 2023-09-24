@@ -1,12 +1,40 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { useShoppingCart } from "use-shopping-cart";
 import CartProduct from "@/components/CartProduct";
+import axios from "axios";
 
 const cart = () => {
-  const { cartCount, clearCart, formattedTotalPrice, cartDetails } =
-    useShoppingCart();
+  const {
+    cartCount,
+    clearCart,
+    formattedTotalPrice,
+    cartDetails,
+    redirectToCheckout,
+  } = useShoppingCart();
+
   console.log(cartDetails);
+
+  const [isRedirecting, setIsRedirecting] = useState(false);
+
+  async function onCheckout() {
+    if (cartCount > 0) {
+      try {
+        setIsRedirecting(true);
+        const { id } = await axios
+          .post("/api/checkout-sessions", cartDetails)
+          .then((res) => res.data);
+        const result = await redirectToCheckout(id);
+        if (result?.error) {
+          console.log("Error in result", error);
+        }
+      } catch (error) {
+        console.log("Error", error);
+      } finally {
+        setIsRedirecting(false);
+      }
+    }
+  }
 
   return (
     <div className="container xl:max-w-screen-xl mx-auto py-12 px-6">
@@ -48,10 +76,11 @@ const cart = () => {
               <span className="font-semibold">{formattedTotalPrice}</span>
             </p>
             <button
-              onClick={() => {}}
+              disabled={isRedirecting}
+              onClick={() => onCheckout}
               className="border rounded py-2 px-6 bg-yellow-500 hover:bg-yellow-600 border-yellow-500 hover:borded-yellow-600 focus:ring-4 focus:ring-opacity-50 focus:ring-yellow-500 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-yellow-500 mt-4 max-w-max"
             >
-              Go to checkout
+              {isRedirecting ? "Redirecting..." : "Go to checkout"}
             </button>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { useShoppingCart } from "use-shopping-cart";
 import CartProduct from "@/components/CartProduct";
 import axios from "axios";
 
-const cart = () => {
+const Cart = () => {
   const {
     cartCount,
     clearCart,
@@ -89,4 +89,4 @@ const cart = () => {
   );
 };
 
-export default cart;
+export default Cart;

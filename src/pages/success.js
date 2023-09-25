@@ -6,7 +6,7 @@ import useSWR from "swr";
 import { useShoppingCart } from "use-shopping-cart";
 import { runFireWorks } from "@/utils/conffeti";
 
-const success = () => {
+const Success = () => {
   const router = useRouter();
   const { clearCart } = useShoppingCart();
   const sessionId = router.query.session_id;
@@ -58,4 +58,4 @@ const success = () => {
   );
 };
 
-export default success;
+export default Success;
